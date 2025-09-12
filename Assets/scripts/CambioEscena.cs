@@ -19,5 +19,11 @@ public class CambioEscena : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void VolverEscena()
+    {
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(0);
+    }
+
 }
 
