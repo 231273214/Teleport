@@ -59,13 +59,19 @@ public class CameraPointerManager : MonoBehaviour
                 GazeManager.Instance.StartGazeSelection();
             }
 
-            if (hit.transform.CompareTag(interactableTag))
+            if (hit.transform.CompareTag(interactableTag) || hit.transform.CompareTag("RotateCube"))
             {
                 PointerOnGaze(hit.point);
             }
             else
             {
                 PointerOutGaze();
+            }
+            var input = Input.GetButtonDown("Fire2");
+            Debug.Log(input);
+            if(input && hit.transform.CompareTag("RotateCube"))
+            {
+                hit.transform.gameObject.GetComponent<RotateCube>().ChangeSpin();
             }
         }
         else
