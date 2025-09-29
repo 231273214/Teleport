@@ -5,36 +5,39 @@ using UnityEngine.UI;
 public class PausaMenu : MonoBehaviour
 {
     public GameObject pausePanel;
+    public GameObject botonAbrirMenu; 
     private bool isPaused = false;
+
     void Start()
     {
         pausePanel.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Pausa()
     {
-        if (Input.GetButtonDown("Fire2"))
-        {
-            TogglePause();
-        }
+        TogglePause();
     }
+
     public void TogglePause()
     {
         isPaused = !isPaused;
         if (isPaused)
         {
-            Time.timeScale = 0f;
+            Time.timeScale = 1f;
             pausePanel.SetActive(true);
+            botonAbrirMenu.SetActive(false); 
         }
         else
         {
             Time.timeScale = 1f;
             pausePanel.SetActive(false);
+            botonAbrirMenu.SetActive(true); 
         }
     }
+
     public void ResetGame()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
 
@@ -43,13 +46,16 @@ public class PausaMenu : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1f;
         pausePanel.SetActive(false);
+        botonAbrirMenu.SetActive(true); 
     }
-    public void QuitGame()
+
+    public void QuiteGame()
     {
 #if UNITY_EDITOR
-    UnityEditor.EditorApplication.isPlaying = false;
+        UnityEditor.EditorApplication.isPlaying = false;
 #else
-    Application.Quit();
+        Application.Quit();
 #endif
     }
 }
+
